@@ -1,12 +1,11 @@
 /* Javier Suárez Guzmán
 Agosto septiembre 2022 */
-
+html {
+    min-height: 100%;
+}
 body {
     background: #091133;
-/*     
-background: -webkit-linear-gradient(to bottom, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 
-background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
-*/
+    background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,17,51,1) 58%, rgba(135,206,250,1) 100%);
     color: #889399;
     font-family: 'Quicksand';
     padding-bottom: 42px;
