@@ -4,6 +4,7 @@ Agosto septiembre 2022 */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Ingreso } from 'src/app/models/ingreso';
 
 @Component({
@@ -15,7 +16,8 @@ export class CrearEditarIngresosComponent implements OnInit {
   ingresoForm: FormGroup;
   titulo = 'Crear ingreso';
   constructor(private fb: FormBuilder, 
-              private router: Router) {
+              private router: Router,
+              private toastr: ToastrService) {
     this.ingresoForm = this.fb.group({
       cedula: ['', Validators.required],
       nombre: ['', Validators.required],
@@ -37,7 +39,7 @@ export class CrearEditarIngresosComponent implements OnInit {
         console.log(this.ingresoForm); //lo trae como Object y no como FormGroup */
     //console.log(typeof(this.ingresoForm.get('nombre')?.value));
 
-    const Ingreso: Ingreso = {
+    const IngresoDatos: Ingreso = {
       cedula: this.ingresoForm.get('cedula')?.value,
       nombre: this.ingresoForm.get('nombre')?.value,
       apellido: this.ingresoForm.get('apellido')?.value,
@@ -47,7 +49,8 @@ export class CrearEditarIngresosComponent implements OnInit {
       ingreso: this.ingresoForm.get('ingreso')?.value,
       salida: this.ingresoForm.get('salida')?.value,
     }
-    console.log(Ingreso);
+    console.log(IngresoDatos);
+    this.toastr.info('Los datos fueron ingresados exitosamente', 'Ingreso satisfactorio')
     this.router.navigate(['/']);
   }
 
