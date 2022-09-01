@@ -4,25 +4,165 @@ Agosto septiembre 2022 */ -->
 <div class="container mt-5">
   <div class="row">
     <div class="col-lg-6 offset-lg-3">
-        <div class="card">
-            <div class="card-body text-center height:42px">
-                <h2>NUEVO INGRESO</h2>
-                <form class="mt-3">
-                    <input type="text" class="form-control mb-3" placeholder="Cédula, DNI, RUT, RUN">
-                    <input type="text" class="form-control mb-3" placeholder="Nombres">
-                    <input type="text" class="form-control mb-3" placeholder="Apellidos">
-                    <input type="number" class="form-control mb-3" placeholder="Número de contacto">
-                    <input type="number" class="form-control mb-3" placeholder="Contacto de emergencia">
-                    <input type="datetime-local" value="" class="form-control mb-3">
-                    <input type="datetime-local" class="form-control mb-3">
-                    <div class="mt-4">
-                        <button class="btn btn-success float-start">Crear</button>
-                        <button class="btn btn-danger">Borrar</button>
-                        <button class="btn btn-secondary float-end">Volver</button>
-                    </div>
-                </form>
+      <div class="card">
+        <div class="card-body text-center height:42px">
+          <h2 class="mb-4">NUEVO INGRESO</h2>
+          <span>Los campos con * son obligatorios</span>
+          <form
+            class="mt-3"
+            [formGroup]="ingresoForm"
+            (ngSubmit)="crearIngreso()"
+          >
+            <input
+              type="text"
+              formControlName="cedula"
+              class="form-control mt-3"
+              placeholder="Cédula, DNI, RUT, RUN *"
+            />
+            <div
+              class="text-danger"
+              *ngIf="
+                ingresoForm.get('cedula')?.hasError('required') &&
+                ingresoForm.get('cedula')?.touched
+              "
+            >
+              <span>Este campo es <strong>obligatorio</strong></span>
             </div>
+            <input
+              type="text"
+              formControlName="nombre"
+              class="form-control mt-3"
+              placeholder="Nombres *"
+            />
+            <div
+              class="text-danger"
+              *ngIf="
+                ingresoForm.get('nombre')?.hasError('required') &&
+                ingresoForm.get('nombre')?.touched
+              "
+            >
+              <span>Este campo es <strong>obligatorio</strong></span>
+            </div>
+            <input
+              type="text"
+              formControlName="apellido"
+              class="form-control mt-3"
+              placeholder="Apellidos *"
+            />
+            <div
+              class="text-danger"
+              *ngIf="
+                ingresoForm.get('apellido')?.hasError('required') &&
+                ingresoForm.get('apellido')?.touched
+              "
+            >
+              <span>Este campo es <strong>obligatorio</strong></span>
+            </div>
+            <div>
+              <input
+                type="email"
+                formControlName="correo"
+                class="form-control mt-3"
+                placeholder="Correo electrónico"
+              />
+              <div
+                class="text-danger"
+                *ngIf="
+                  ingresoForm.get('correo')?.hasError('email') &&
+                  ingresoForm.get('correo')?.touched">
+                <span>Este campo
+                  <strong
+                    >solo acepta correos con el formato
+                    correo@correo.com</strong></span>
+              </div>
+            </div>
+            <input
+              type="number"
+              formControlName="nroContacto"
+              class="form-control mt-3"
+              placeholder="Número de contacto *"
+            />
+            <div
+              class="text-danger"
+              *ngIf="
+                ingresoForm.get('nroContacto')?.hasError('required') &&
+                ingresoForm.get('nroContacto')?.touched
+              "
+            >
+              <span
+                >Este campo es
+                <strong
+                  >obligatorio y solo acepta números sin espacios</strong
+                ></span
+              >
+            </div>
+            <input
+              type="number"
+              formControlName="nroEmergencia"
+              class="form-control mt-3"
+              placeholder="Contacto de emergencia *"
+            />
+            <div
+              class="text-danger"
+              *ngIf="
+                ingresoForm.get('nroEmergencia')?.hasError('required') &&
+                ingresoForm.get('nroEmergencia')?.touched
+              "
+            >
+              <span
+                >Este campo es
+                <strong
+                  >obligatorio y solo acepta números sin espacios</strong
+                ></span
+              >
+            </div>
+            <label class="float-start">Hora de ingreso *</label>
+            <input
+              type="datetime-local"
+              formControlName="ingreso"
+              class="form-control mt-3"
+            />
+            <div
+              class="text-danger"
+              *ngIf="
+                ingresoForm.get('ingreso')?.hasError('required') &&
+                ingresoForm.get('ingreso')?.touched
+              "
+            >
+              <span>Este campo es <strong>obligatorio</strong></span>
+            </div>
+            <label class="float-start">Hora de salida *</label>
+            <input
+              type="datetime-local"
+              formControlName="salida"
+              class="form-control mt-3"
+            />
+            <div
+              class="text-danger"
+              *ngIf="
+                ingresoForm.get('salida')?.hasError('required') &&
+                ingresoForm.get('salida')?.touched
+              "
+            >
+              <span>Este campo es <strong>obligatorio</strong></span>
+            </div>
+            <div class="mt-4">
+              <button
+                type="submit"
+                [disabled]="ingresoForm.invalid"
+                class="btn btn-success float-start"
+              >
+                Crear
+              </button>
+              <input type="reset" class="btn btn-danger" value="Limpiar" />
+              <!-- <button class="btn btn-danger">Borrar</button> -->
+              <button routerLink="/" class="btn btn-secondary float-end">
+                Volver
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
   </div>
 </div>

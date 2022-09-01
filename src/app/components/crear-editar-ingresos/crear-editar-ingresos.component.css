@@ -12,3 +12,8 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.text-danger {
+text-align: start;
+margin-left: 4px;
+}

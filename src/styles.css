@@ -12,7 +12,12 @@ background: linear-gradient(to bottom, #2C5364, #203A43, #0F2027); /* W3C, IE 10
     padding-bottom: 42px;
 }
 
+h1 {
+    font-weight: 900;
+}
+
 h2 {
     color: #091133;
+    font-weight: 500;
 }
 
