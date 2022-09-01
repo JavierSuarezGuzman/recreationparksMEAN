@@ -3,6 +3,7 @@ Agosto septiembre 2022 */
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Ingreso } from 'src/app/models/ingreso';
 
 @Component({
   selector: 'app-crear-editar-ingresos',
@@ -30,17 +31,22 @@ export class CrearEditarIngresosComponent implements OnInit {
 
   crearIngreso() {
 
-/*     console.log(typeof(this.ingresoForm)); //object
-    console.log(this.ingresoForm); //lo trae como Object y no como FormGroup */
+    /*     console.log(typeof(this.ingresoForm)); //object
+        console.log(this.ingresoForm); //lo trae como Object y no como FormGroup */
     //console.log(typeof(this.ingresoForm.get('nombre')?.value));
-    console.log(this.ingresoForm.get('cedula')?.value); //string
-    console.log(this.ingresoForm.get('nombre')?.value); //string
-    console.log(this.ingresoForm.get('apellido')?.value); //string
-    console.log(this.ingresoForm.get('correo')?.value); //string
-    console.log(this.ingresoForm.get('nroContacto')?.value); //string
-    console.log(this.ingresoForm.get('nroEmergencia')?.value); //string
-    console.log(this.ingresoForm.get('ingreso')?.value); //string
-    console.log(this.ingresoForm.get('salida')?.value); //string
+
+    const Ingreso: Ingreso = {
+      cedula: this.ingresoForm.get('cedula')?.value,
+      nombre: this.ingresoForm.get('nombre')?.value,
+      apellido: this.ingresoForm.get('apellido')?.value,
+      correo: this.ingresoForm.get('correo')?.value,
+      nroContacto: this.ingresoForm.get('nroContacto')?.value,
+      nroEmergencia: this.ingresoForm.get('nroEmergencia')?.value,
+      ingreso: this.ingresoForm.get('ingreso')?.value,
+      salida: this.ingresoForm.get('salida')?.value,
+    }
+    console.log(Ingreso);
+    
   }
 
 }
