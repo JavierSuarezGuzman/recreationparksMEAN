@@ -8,7 +8,6 @@ body {
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,17,51,1) 58%, rgba(135,206,250,1) 100%);
     color: #889399;
     font-family: 'Quicksand';
-    padding-bottom: 42px;
 }
 
 h1 {
@@ -20,3 +19,11 @@ h2 {
     font-weight: 500;
 }
 
+.App-footer {
+    color: #091133;
+    font-size: 13px;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 0px;
+}
