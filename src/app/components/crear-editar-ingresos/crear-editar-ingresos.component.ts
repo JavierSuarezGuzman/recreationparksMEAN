@@ -3,6 +3,7 @@ Agosto septiembre 2022 */
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Ingreso } from 'src/app/models/ingreso';
 
 @Component({
@@ -13,7 +14,8 @@ import { Ingreso } from 'src/app/models/ingreso';
 export class CrearEditarIngresosComponent implements OnInit {
   ingresoForm: FormGroup;
   titulo = 'Crear ingreso';
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, 
+              private router: Router) {
     this.ingresoForm = this.fb.group({
       cedula: ['', Validators.required],
       nombre: ['', Validators.required],
@@ -46,7 +48,7 @@ export class CrearEditarIngresosComponent implements OnInit {
       salida: this.ingresoForm.get('salida')?.value,
     }
     console.log(Ingreso);
-    
+    this.router.navigate(['/']);
   }
 
 }
