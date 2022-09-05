@@ -19,6 +19,29 @@ Agosto septiembre 2022 */ -->
               class="form-control mt-3"
               placeholder="Cédula, DNI, RUT, RUN *"
             />
+            <input
+              type="radio"
+              name="tipoDocumento"
+              id="Argentina"
+              value="Argentina"
+            />
+            <label class="mx-1" for="Argentina">Argentina</label>
+            <input type="radio" name="tipoDocumento" id="Chile" value="Chile" />
+            <label class="mx-1" for="Chile">Chile</label>
+            <input
+              type="radio"
+              name="tipoDocumento"
+              id="Venezuela"
+              value="Venezuela"
+            />
+            <label class="mx-1" for="Venezuela">Venezuela</label>
+            <input
+              type="radio"
+              name="tipoDocumento"
+              id="Turista"
+              value="Turista"
+            />
+            <label class="mx-1" for="Turista">Pasaporte</label>
             <div
               class="text-danger"
               *ngIf="
@@ -26,7 +49,7 @@ Agosto septiembre 2022 */ -->
                 ingresoForm.get('cedula')?.touched
               "
             >
-              <span>Este campo es <strong>obligatorio</strong></span>
+              <span>Campo <strong>obligatorio</strong></span>
             </div>
             <input
               type="text"
@@ -37,11 +60,15 @@ Agosto septiembre 2022 */ -->
             <div
               class="text-danger"
               *ngIf="
-                ingresoForm.get('nombre')?.hasError('required') &&
+                (ingresoForm.get('nombre')?.hasError('required') ||
+                  ingresoForm.get('nombre')?.hasError('pattern')) &&
                 ingresoForm.get('nombre')?.touched
               "
             >
-              <span>Este campo es <strong>obligatorio</strong></span>
+              <span
+                >Campo obligatorio y
+                <strong>no debe contener números</strong></span
+              >
             </div>
             <input
               type="text"
@@ -52,11 +79,15 @@ Agosto septiembre 2022 */ -->
             <div
               class="text-danger"
               *ngIf="
-                ingresoForm.get('apellido')?.hasError('required') &&
+                (ingresoForm.get('apellido')?.hasError('required') ||
+                  ingresoForm.get('apellido')?.hasError('pattern')) &&
                 ingresoForm.get('apellido')?.touched
               "
             >
-              <span>Este campo es <strong>obligatorio</strong></span>
+              <span
+                >Campo obligatorio y
+                <strong>no debe contener números</strong></span
+              >
             </div>
             <div>
               <input
@@ -69,11 +100,16 @@ Agosto septiembre 2022 */ -->
                 class="text-danger"
                 *ngIf="
                   ingresoForm.get('correo')?.hasError('email') &&
-                  ingresoForm.get('correo')?.touched">
-                <span>Este campo
+                  ingresoForm.get('correo')?.touched
+                "
+              >
+                <span
+                  >Este campo
                   <strong
                     >solo acepta correos con el formato
-                    correo@correo.com</strong></span>
+                    correo@correo.com</strong
+                  ></span
+                >
               </div>
             </div>
             <input
@@ -129,7 +165,7 @@ Agosto septiembre 2022 */ -->
                 ingresoForm.get('ingreso')?.touched
               "
             >
-              <span>Este campo es <strong>obligatorio</strong></span>
+              <span>Campo <strong>obligatorio</strong></span>
             </div>
             <label class="float-start">Hora de salida *</label>
             <input
@@ -144,8 +180,9 @@ Agosto septiembre 2022 */ -->
                 ingresoForm.get('salida')?.touched
               "
             >
-              <span>Este campo es <strong>obligatorio</strong></span>
+              <span>Campo <strong>obligatorio</strong></span>
             </div>
+
             <div class="mt-4">
               <button
                 type="submit"
@@ -154,8 +191,9 @@ Agosto septiembre 2022 */ -->
               >
                 Crear
               </button>
+
               <input type="reset" class="btn btn-danger" value="Limpiar" />
-              <!-- <button class="btn btn-danger">Borrar</button> -->
+
               <button routerLink="/" class="btn btn-secondary float-end">
                 Volver
               </button>

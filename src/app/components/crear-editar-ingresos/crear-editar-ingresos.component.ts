@@ -12,32 +12,30 @@ import { Ingreso } from 'src/app/models/ingreso';
   templateUrl: './crear-editar-ingresos.component.html',
   styleUrls: ['./crear-editar-ingresos.component.css']
 })
+
 export class CrearEditarIngresosComponent implements OnInit {
   ingresoForm: FormGroup;
-  titulo = 'Crear ingreso';
-  constructor(private fb: FormBuilder, 
-              private router: Router,
-              private toastr: ToastrService) {
+  titulo = 'Nuevo ingreso';
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService) {
     this.ingresoForm = this.fb.group({
       cedula: ['', Validators.required],
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
+      nombre: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
+      apellido: ['', [Validators.required, Validators.pattern('[a-zA-Z ]*')]],
       correo: ['', Validators.email],
       nroContacto: ['', Validators.required],
       nroEmergencia: ['', Validators.required],
-      ingreso: ['', Validators.required],
-      salida: ['', Validators.required],
+      ingreso: [`${this.fechaHoy()}`, Validators.required],
+      salida: [``, Validators.required],
     })
+    console.log(this.ingresoForm.get('ingreso')?.value);
   }
 
   ngOnInit(): void {
   }
 
   crearIngreso() {
-
-    /*     console.log(typeof(this.ingresoForm)); //object
-        console.log(this.ingresoForm); //lo trae como Object y no como FormGroup */
-    //console.log(typeof(this.ingresoForm.get('nombre')?.value));
 
     const IngresoDatos: Ingreso = {
       cedula: this.ingresoForm.get('cedula')?.value,
@@ -52,6 +50,32 @@ export class CrearEditarIngresosComponent implements OnInit {
     console.log(IngresoDatos);
     this.toastr.info('Los datos fueron ingresados exitosamente', 'Ingreso satisfactorio')
     this.router.navigate(['/']);
+  }
+
+  fechaHoy() {
+    const fecha = new Date();
+    let dia = String(fecha.getDate());
+    let mes = String(fecha.getMonth() + 1);
+    let anno = String(fecha.getFullYear());
+    let hora = String(fecha.getHours());
+    let minuto = String(fecha.getMinutes());
+
+    if (parseInt(mes) < 10) {
+      mes = "0" + mes;
+    }
+    if (parseInt(dia) < 10) {
+      dia = "0" + dia;
+    }
+    if (parseInt(hora) < 10) {
+      hora = "0" + hora;
+    }
+    if (parseInt(minuto) < 10) {
+      minuto = "0" + minuto;
+    }
+
+    const fechaString = anno + "-" + mes + "-" + dia + "T" + hora + ":" + minuto;
+    return fechaString;
+
   }
 
 }
