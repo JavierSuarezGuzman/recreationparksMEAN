@@ -1,5 +1,7 @@
 # Parksrecreation
 
+Front-End realizado para proyecto del stack MEAN como parte del proceso de práctica en ACL.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
 
 ## Development server
